@@ -3,8 +3,9 @@ This is the core labeltool module.
 """
 import os
 import sys
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
 from sloth.annotations.model import *
 from sloth.annotations.container import AnnotationContainerFactory, AnnotationContainer
 from sloth.conf import config
@@ -109,7 +110,7 @@ class LabelTool(QObject):
                             format='%(asctime)s %(levelname)-8s %(name)-30s %(message)s')  #, datefmt='%H:%M:%S.%m')
 
         # Disable PyQt log messages
-        logging.getLogger("PyQt4").setLevel(logging.WARNING)
+        logging.getLogger("PyQt5").setLevel(logging.WARNING)
 
         # Handle options common for all commands
         # and initialize the labeltool object from
@@ -150,6 +151,7 @@ class LabelTool(QObject):
         else:
             # Setup GUI
             self._mainwindow = MainWindow(self)
+            self._mainwindow.doinit()
             self._mainwindow.show()
 
             # Load plugins

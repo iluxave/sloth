@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os, sys
-from PyQt4.QtGui import QApplication
+from PyQt5.QtWidgets import QApplication
 from sloth.gui import MainWindow
 from sloth.core.labeltool import LabelTool
 from sloth import APP_NAME, ORGANIZATION_NAME, ORGANIZATION_DOMAIN

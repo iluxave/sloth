@@ -1,5 +1,5 @@
-from PyQt4.QtCore import Qt, QRect, QSize, QPoint
-from PyQt4.QtGui  import QLayout, QSizePolicy, QWidgetItem
+from PyQt5.QtCore import Qt, QRect, QSize, QPoint
+from PyQt5.QtWidgets  import QLayout, QSizePolicy, QWidgetItem
 
 
 class FloatingLayout(QLayout):

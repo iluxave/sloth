@@ -2,11 +2,12 @@
 import logging, os
 import functools
 import fnmatch
-from PyQt4.QtGui import QMainWindow, QSizePolicy, QWidget, QVBoxLayout, QAction,\
-        QKeySequence, QLabel, QItemSelectionModel, QMessageBox, QFileDialog, QFrame, \
+from PyQt5.QtWidgets import QMainWindow, QSizePolicy, QWidget, QVBoxLayout, QAction,\
+        QLabel, QMessageBox, QFileDialog, QFrame, \
         QDockWidget, QProgressBar, QProgressDialog
-from PyQt4.QtCore import SIGNAL, QSettings, QSize, QPoint, QVariant, QFileInfo, QTimer, pyqtSignal, QObject
-import PyQt4.uic as uic
+from PyQt5.QtGui import QKeySequence
+from PyQt5.QtCore import QSettings, QSize, QPoint, QVariant, QFileInfo, QTimer, pyqtSignal, QObject, QItemSelectionModel
+import PyQt5.uic as uic
 from sloth.gui import qrc_icons  # needed for toolbar icons
 from sloth.gui.propertyeditor import PropertyEditor
 from sloth.gui.annotationscene import AnnotationScene
@@ -70,6 +71,8 @@ class MainWindow(QMainWindow):
         self.loader = None
 
         self.labeltool = labeltool
+
+    def doinit(self):
         self.setupGui()
         self.loadApplicationSettings()
         self.onAnnotationsLoaded()
@@ -399,7 +402,7 @@ class MainWindow(QMainWindow):
         format_str = ' '.join(self.labeltool.getAnnotationFilePatterns())
         fname = QFileDialog.getOpenFileName(self, 
                 "%s - Load Annotations" % APP_NAME, path,
-                "%s annotation files (%s)" % (APP_NAME, format_str))
+                "%s annotation files (%s)" % (APP_NAME, format_str))[0]
         if len(str(fname)) > 0:
             self.labeltool.loadAnnotations(fname)
 
@@ -429,7 +432,7 @@ class MainWindow(QMainWindow):
         image_types = [ '*.jpg', '*.bmp', '*.png', '*.pgm', '*.ppm', '*.tiff', '*.tif', '*.gif' ]
         video_types = [ '*.mp4', '*.mpg', '*.mpeg', '*.avi', '*.mov', '*.vob' ]
         format_str = ' '.join(image_types + video_types)
-        fnames = QFileDialog.getOpenFileNames(self, "%s - Add Media File" % APP_NAME, path, "Media files (%s)" % (format_str, ))
+        fnames = QFileDialog.getOpenFileNames(self, "%s - Add Media File" % APP_NAME, path, "Media files (%s)" % (format_str, ))[0]
 
         item = None
         numFiles = len(fnames)

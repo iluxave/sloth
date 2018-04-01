@@ -1,6 +1,7 @@
 import math
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
 try:
     import okapy.videoio
 except ImportError:
@@ -96,7 +97,7 @@ class GraphicsView(QGraphicsView):
         self.setScaleAbsolute(self.getScale() * factor)
 
     def wheelEvent(self, event):
-        factor = 1.41 ** (event.delta() / 240.0)
+        factor = 1.41 ** (event.angleDelta().y() / 240.0)
         self.setScaleRelative(factor)
 
     def focusInEvent(self, event):
