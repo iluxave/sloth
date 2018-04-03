@@ -217,7 +217,11 @@ class LabelTool(QObject):
             p = plugin(self)
             self._plugins.append(p)
             action = p.action()
-            self.pluginLoaded.emit(action)
+            if isinstance(action, (list, tuple)):
+                for a in action:
+                    self.pluginLoaded.emit(a)
+            else:
+                self.pluginLoaded.emit(action)
 
     ###
     ### Annoation file handling
