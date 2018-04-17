@@ -417,7 +417,7 @@ class MainWindow(QMainWindow):
         format_str = ' '.join(self.labeltool.getAnnotationFilePatterns())
         fname = QFileDialog.getSaveFileName(self,
                 "%s - Save Annotations" % APP_NAME, fname,
-                "%s annotation files (%s)" % (APP_NAME, format_str))
+                "%s annotation files (%s)" % (APP_NAME, format_str))[0]
 
         if len(str(fname)) > 0:
             return self.labeltool.saveAnnotations(str(fname))
